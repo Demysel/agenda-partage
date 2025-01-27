@@ -1,3 +1,7 @@
+const corsHeaders = {
+  'Access-Control-Allow-Origin': 'https://effortless-bavarois-d9cb6d.netlify.app',
+  'Access-Control-Allow-Methods': 'GET,PUT'
+};
 document.addEventListener('DOMContentLoaded', async () => {
     const API_KEY = Netlify.env.get('JSONBIN_KEY');
     const BIN_ID = Netlify.env.get('BIN_ID');
@@ -8,10 +12,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Charger les événements
     async function loadEvents() {
-        try {
-            const response = await fetch(API_URL, {
-                headers: {'X-Master-Key': API_KEY}
-            });
+  const response = await fetch(API_URL, {
+    headers: { 
+      'X-Master-Key': API_KEY,
+      ...corsHeaders 
+    }
+  });
+}
             const data = await response.json();
             return data.record.events || [];
         } catch (error) {
