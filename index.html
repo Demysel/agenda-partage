@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Partagé</title>
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.8/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.8/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.8/main.min.css' rel='stylesheet' />
+    <link href="./styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Agenda Partagé 👫</h1>
+        <div class="controls">
+            <button id="darkModeToggle">🌓</button>
+            <select id="viewSelector">
+                <option value="timeGridDay">Jour</option>
+                <option value="timeGridWeek">Semaine</option>
+                <option value="dayGridMonth">Mois</option>
+            </select>
+        </div>
+    </header>
+
+    <div id="calendar"></div>
+
+    <!-- Modal de création d'événement -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Nouvel Événement</h2>
+            <form id="eventForm">
+                <div class="form-group">
+                    <label>Titre :</label>
+                    <input type="text" id="eventTitle" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Type :</label>
+                    <select id="eventType">
+                        <option value="perso">Perso</option>
+                        <option value="pro">Pro</option>
+                        <option value="enfant">Enfant</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Début :</label>
+                    <input type="datetime-local" id="eventStart" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Fin :</label>
+                    <input type="datetime-local" id="eventEnd">
+                </div>
+
+                <div class="form-group">
+                    <label>Lieu :</label>
+                    <input type="text" id="eventLocation">
+                </div>
+
+                <div class="form-group">
+                    <label>Répétition :</label>
+                    <select id="eventRecurrence">
+                        <option value="">Aucune</option>
+                        <option value="daily">Quotidienne</option>
+                        <option value="weekly">Hebdomadaire</option>
+                    </select>
+                </div>
+
+                <button type="submit">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script src="./app.js"></script>
+</body>
+</html>
