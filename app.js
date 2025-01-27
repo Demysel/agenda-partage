@@ -1,32 +1,29 @@
+const JSONBIN_API_KEY = '$2a$10$j99ZptquF7iTqI/UP0xQMucBLqWZW/8bTlz859GxEqzmmfq0DpR4.';
+const JSONBIN_BIN_ID = '6794ec2de41b4d34e47e7ce5';
+
+let currentDate = new Date();
+let selectedEvent = null;
+let currentTheme = localStorage.getItem('theme') || 'light';
+
+// Configuration CORS pour JSONBin.io
 const corsHeaders = {
-  'Access-Control-Allow-Origin': 'https://effortless-bavarois-d9cb6d.netlify.app',
-  'Access-Control-Allow-Methods': 'GET,PUT'
+  'Content-Type': 'application/json',
+  'X-Master-Key': '$$2a$10$j99ZptquF7iTqI/UP0xQMucBLqWZW/8bTlz859GxEqzmmfq0DpR4.',
+  'Access-Control-Allow-Origin': 'https://dreamy-dolphin-b8aa6f.netlify.app'
 };
-document.addEventListener('DOMContentLoaded', async () => {
-    const API_KEY = '$2a$10$j99ZptquF7iTqI/UP0xQMucBLqWZW/8bTlz859GxEqzmmfq0DpR4.';
-const BIN_ID = '6794ec2de41b4d34e47e7ce5';
-    const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`;
 
-    let calendarEl = document.getElementById('calendar');
-    let currentEventId = null;
-
-    // Charger les événements
-   async function loadEvents() {
-    try {
-        const response = await fetch(API_URL, {
-            headers: { 
-                'X-Master-Key': API_KEY,
-                ...corsHeaders 
-            }
-        });
-        const data = await response.json();
-        return data.record.events || [];
-    } catch (error) {
-        console.error('Erreur de chargement:', error);
-        return [];
-    }
+async function loadEvents() {
+  try {
+    const response = await fetch(`https://api.jsonbin.io/v3/b/6794ec2de41b4d34e47e7ce5/latest`, {
+      headers: corsHeaders
+    });
+    const data = await response.json();
+    return data.record.events || [];
+  } catch (error) {
+    console.error('Erreur de chargement:', error);
+    return [];
+  }
 }
-
 
     // Sauvegarder les événements
     async function saveEvents(events) {
