@@ -11,20 +11,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentEventId = null;
 
     // Charger les événements
-    async function loadEvents() {
-  const response = await fetch(API_URL, {
-    headers: { 
-      'X-Master-Key': API_KEY,
-      ...corsHeaders 
+   async function loadEvents() {
+    try {
+        const response = await fetch(API_URL, {
+            headers: { 
+                'X-Master-Key': API_KEY,
+                ...corsHeaders 
+            }
+        });
+        const data = await response.json();
+        return data.record.events || [];
+    } catch (error) {
+        console.error('Erreur de chargement:', error);
+        return [];
     }
-  });
-            const data = await response.json();
-            return data.record.events || [];
-        } catch (error) {
-            console.error('Erreur de chargement:', error);
-            return [];
-        }
-    }
+}
+
 
     // Sauvegarder les événements
     async function saveEvents(events) {
