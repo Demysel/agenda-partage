@@ -3,8 +3,8 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'GET,PUT'
 };
 document.addEventListener('DOMContentLoaded', async () => {
-    const API_KEY = Netlify.env.get('JSONBIN_KEY');
-    const BIN_ID = Netlify.env.get('BIN_ID');
+    const API_KEY = Netlify.env.get('$2a$10$j99ZptquF7iTqI/UP0xQMucBLqWZW/8bTlz859GxEqzmmfq0DpR4.');
+    const BIN_ID = Netlify.env.get('6794ec2de41b4d34e47e7ce5');
     const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`;
 
     let calendarEl = document.getElementById('calendar');
