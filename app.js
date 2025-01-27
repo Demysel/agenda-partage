@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       ...corsHeaders 
     }
   });
-}
             const data = await response.json();
             return data.record.events || [];
         } catch (error) {
